@@ -1,0 +1,27 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Clinic Global 1998</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+</head>
+  <body class="min-h-screen flex flex-col bg-blue-50">
+    <!-- Navbar -->
+    {% include "hospital/navbar_home.html" %}
+
+    <!-- Block Content -->
+    {% block content %}
+    {% endblock content %}
+    
+    <!-- Footer -->
+    {% include "hospital/footer_home.html" %}  
+  <!-- End Footer -->
+
+
+  </body>
+</html>

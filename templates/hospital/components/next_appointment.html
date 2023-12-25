@@ -1,0 +1,31 @@
+{% load static %}
+<div class="border-1 bg-white rounded-lg border-gray-200 shadow-md h-96 mb-4 mt-5">
+    <div class="h-12 py-4 px-9 text-lg"> Next Appointments
+    </div>
+
+    <table class="w-full">
+        <tr class="bg-gray-200 py-1 px-5">
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Visit time</th>
+        <th>Conditions</th>
+        <th>Update</th>
+        <th>Delete</th>
+       </tr>
+
+       {% for appointment in appointments %}
+    <tr class="border-b-[2px] text-sm py-3 px-5 border-gray-200">
+        <th>
+            <img src="{% static 'images/doctor.jpg' %}" class="rounded-full h-6">
+            <span>Doctor</span>
+        </th>
+        <td>Date</td>
+        <td>Visit Time</td>
+        <td>Conditions</td>
+        <td>update</td>
+        <td>delete</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>

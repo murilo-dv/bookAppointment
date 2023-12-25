@@ -1,0 +1,25 @@
+{% load static %}
+<div class="border-1 bg-white rounded-lg border-gray-200 shadow-md h-96 mb-4 mt-5">
+    <div class="h-12 py-4 px-9 text-lg"> My Appointments
+    </div>
+
+    <table class="w-full">
+        <tr class="bg-gray-200 py-1 px-5 flex flex-row justify-between">
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Visit time</th>
+        <th>Conditions</th>
+        </tr>
+    <tr class="border-b-[2px] text-sm py-3 px-5 border-gray-200 flex">
+        <td class="flex">
+            <img src="{% static 'images/doctor.jpg' %}" class="rounded-full h-6 mr-3">
+            <span>Doctor</span>
+        </td>
+        <td>Date</td>
+        <td>Visit Time</td>
+        <td>Conditions</td>
+        <td>Buttons</td>
+    </tr>
+</table>
+
+</div>

@@ -1,0 +1,34 @@
+{% load static %}
+<div class="border-1 bg-white rounded-lg border-gray-200 shadow-md h-96 mb-4 mt-5">
+    <div class="h-12 py-4 px-9 text-lg"> Patients
+    </div>
+
+    <table class="w-full">
+        <tr class="bg-gray-200 py-1 px-5">
+        <th>Patient</th>
+        <th>E-mail</th>
+        <th>Phone</th>
+        <th>Date created</th>
+        <th>Last Visit</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </tr>
+    
+        {% for patient in patients%}
+        <tr class="border-b-[2px] text-sm py-3 px-5 border-gray-200">
+            <th class="">
+                <img src="{% static 'images/doctor.png' %}" class="rounded-full h-6">
+                <span>{{patient}}</span>
+            </th>
+            <td>{{patient.email}}</td>
+            <td>{{patient.phone}}</td>
+            <td>Conditions</td>
+            <td>Last Visit</td>
+            <td>update</td>
+            <td>delete</td>
+        </tr>
+        {% endfor%}
+        
+</table>
+
+</div>

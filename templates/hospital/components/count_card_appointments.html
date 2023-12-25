@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Card 1 -->
+    <div class="bg-white rounded-md shadow-md p-4 flex justify-center items-center">
+        <div class="mr-4">
+            <img class="h-20"
+            src="{% static 'images/health-filled-svgrepo-com.svg' %}"
+            alt="health-icon"
+            >
+        </div>
+        <div class="">
+            <p class="text-xl font-bold">Today's Appointments</p>
+            <p class="text-lg text-[#336CFB]">{{todayAppointments}}</p>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white rounded-md shadow-md p-4 flex justify-center items-center">
+        <div class="mr-4">
+            <img class="h-20"
+            src="{% static 'images/medical-caduceus-svgrepo-com.svg' %}"
+            alt="health-icon"
+            >
+        </div>
+        <div class="">
+            <p class="text-xl font-bold">Week's Appointments</p>
+            <p class="text-lg text-[#336CFB]">{{weekAppointments}}</p>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white rounded-md shadow-md p-4 flex justify-center items-center">
+        <div class="mr-4">
+            <img class="h-20"
+            src="{% static 'images/medical-notes-symbol-of-a-list-paper-on-a-clipboard-svgrepo-com.svg' %}"
+            alt="health-icon"
+            >
+        </div>
+        <div class="">
+            <p class="text-xl font-bold">Month's Appointments</p>
+            <p class="text-lg text-[#336CFB]">{{monthAppointments}}</p>
+        </div>
+    </div>
+</div>

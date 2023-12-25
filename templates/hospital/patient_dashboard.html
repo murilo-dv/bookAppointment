@@ -1,0 +1,16 @@
+{% extends 'hospital/_dashboard_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mb-5">
+    <h1 class="text-2xl font-extrabold">Good Morning</h1>
+    <h1>{{current_user.first_name}}</h1>
+</div>
+{% include 'hospital/components/next_appointment.html' %}
+{% include 'hospital/components/blog_dashboard.html' %}
+
+<!-- {% comment %}
+{%include 'hospital/patient_dashboard_cards.html'%}
+{% endcomment %} -->
+
+{% endblock content %}

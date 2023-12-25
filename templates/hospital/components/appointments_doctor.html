@@ -1,0 +1,34 @@
+{% load static %}
+<div class="border-1 bg-white rounded-lg border-gray-200 shadow-md h-96 mb-4 mt-5">
+    <div class="h-12 py-4 px-9 text-lg"> Appointments Doctor/Admin
+    </div>
+
+    <table class="w-full">
+
+        <tr class="bg-gray-200">
+        <th>Patient</th>
+        <th>Date</th>
+        <th>time</th>
+        <th>Conditions</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </tr>
+        {% for appointment in appointments_doctor %}
+<tr class="border-b-[2px] text-sm py-3 px-5 border-gray-200">
+        <th>
+            <img src="{% static 'images/doctor.jpg' %}" class="rounded-full h-6 mr-3">
+            <span>{{appointment.patientId}}</span>
+        </th>
+        <td>{{appointment.date}}</td>
+        <td>{{appointment.time}}</td>
+        <td>{{appointment.description}}</td>
+        <td><a href="" class="">update</a></td>
+        <td><a href="">delete</a></td>
+    </tr>
+        {% endfor%}
+    
+    
+        
+</table>
+
+</div>

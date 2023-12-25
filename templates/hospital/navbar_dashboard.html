@@ -1,0 +1,57 @@
+{% load static %}
+
+<nav class="bg-white border-b border-gray-200 px-6 py-2.5 fixed left-0 right-0 top-0 z-40 shadow-lg">
+    <div class="flex flex-wrap justify-between items-center">
+      <div class="flex justify-start items-center">
+       
+        <a href="#" class="flex items-center justify-between mr-4">
+          <img
+            src="{% static 'images/Logo_h.svg' %}"
+            class="mr-3 h-9"
+            alt="Logo"
+          />
+        </a>
+        
+      </div>
+      <div class="flex items-center lg:order-2">
+        
+        <!-- Notifications -->
+        <button
+          type="button"
+          data-dropdown-toggle="notification-dropdown"
+          class="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100  focus:ring-4 focus:ring-gray-300 "
+        >
+          <span class="sr-only">View notifications</span>
+          <!-- Bell icon -->
+          <svg
+            aria-hidden="true"
+            class="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+            ></path>
+          </svg>
+        </button>
+
+        
+        <!-- Apps -->
+        
+        <button 
+          type="button"
+          class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 "
+        >
+          <img
+            class="w-8 h-8 rounded-full"
+            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+            alt="user photo"
+          />
+        </button>
+        <div class="ml-5">
+        <a href="logout" class="text-xs">Logout</a>
+      </div>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,26 @@
+{% load static %}
+<div class="border-1 bg-white rounded-lg border-gray-200 shadow-md mb-4 mt-5 flex p-7">
+    <!-- Left -->
+    <div>
+        <img
+        src="{% static 'images/patient.jpg' %}"
+        class="rounded-full h-44 border-4 border-[#336CFB]"
+        />
+    </div>
+
+    <!-- Middle -->
+    <div class="ml-10 flex-1">
+    <p class="font-semibold text-2xl mb-3">Next Patient</p>
+    <p class="">{{next_patient_appointment.patientId.get_name}}</p>
+    <p class="text-gray-500">{{next_patient_appointment.patientId.mobile}}</p>
+    <p class="mt-8">Conditions:</p>
+    <p class="text-gray-500">{{next_patient_appointment.description}}</p>
+    </div>
+    
+
+    <!-- Right -->
+    <div class="text-right">
+        <p class="text-2xl font-bold text-[#336CFB]">{{next_patient_appointment.date}}</p>
+        <p class="text-[#336CFB]">{{next_patient_appointment.time}}</p>
+    </div>
+</div>

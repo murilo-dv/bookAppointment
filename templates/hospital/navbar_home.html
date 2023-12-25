@@ -1,0 +1,12 @@
+{% load static %}
+<nav class="relative w-full flex px-12 py-9 justify-between items-center bg-white shadow-lg">
+    <a href="/"><img src="{% static 'images/Logo_h.svg' %}" alt="Medical-Logo" width="200px" height="160px"/></a>
+    <ul class="list-none flex justify-end items-center flex-1">
+        <li class="cursor-pointer text-gray-800 mr-10"><a href="/aboutus">About Us</a></li>
+        <li class="cursor-pointer text-gray-800 mr-10"><a href="/contactus">Contact Us</a></li>
+        <li class="cursor-pointer text-gray-800 mr-3"><a href="/book_appointment"><button type="button" onclick="'/book_appointment'" class="w-auto text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Book Appointment
+        </button></a></li>
+        <li><a href="/adminlogin"><button type="button" onclick="'/adminlogin'" class="w-auto text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Login
+        </button></a></li>
+    </ul>
+  </nav>
