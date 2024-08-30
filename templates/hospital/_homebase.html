@@ -10,18 +10,17 @@
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
 </head>
-  <body class="min-h-screen flex flex-col bg-blue-50">
+  <body class=" flex flex-col bg-blue-50 min-h-screen">
     <!-- Navbar -->
     {% include "hospital/navbar_home.html" %}
-
+    
     <!-- Block Content -->
-    {% block content %}
-    {% endblock content %}
+    <main class="flex-1">
+      {% block content %}
+      {% endblock content %}
+    </main>
     
     <!-- Footer -->
     {% include "hospital/footer_home.html" %}  
-  <!-- End Footer -->
-
-
   </body>
 </html>

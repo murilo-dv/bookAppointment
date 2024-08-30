@@ -1,11 +1,10 @@
 {% extends "hospital/_homebase.html" %}
 {% load static %}
 
-
 {% block content %}
-<section class="bg-white rounded-lg shadow-md mt-5">
-    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 ">New Appointment</h2>
+<section>
+    <div class="bg-white rounded-lg my-7 shadow-md py-8 p-4 mx-auto max-w-screen-md">
+        <h2 class="mb-4 text-3xl font-extrabold text-center text-gray-900 ">New Appointment</h2>
         <form method="POST" class="space-y-8">
             {% csrf_token %}
             {{ form.as_p }}

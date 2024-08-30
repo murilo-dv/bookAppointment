@@ -17,7 +17,13 @@
         {% include "hospital/navbar_dashboard.html" %}
 
         <!-- Sidebar -->
-        {% include "hospital/sidebar_dashboard.html" %}
+        {% if user_role == 'doctor' %}
+            {% include "hospital/dashboard_doctor/sidebar_dashboard.html" %}  
+        {% elif user_role == 'patient' %}
+            {% include "hospital/dashboard_patient/sidebar_dashboard.html" %}
+        {% elif user_role == 'admin' %}
+            {% include "hospital/dashboard_admin/sidebar_dashboard.html" %}
+        {% endif %}  
         <main class="p-4 md:ml-64 h-auto pt-20"> 
         {% block content %}
         {% endblock content %}
