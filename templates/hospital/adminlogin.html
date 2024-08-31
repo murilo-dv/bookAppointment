@@ -3,37 +3,31 @@
 {% load widget_tweaks %}
 
 {% block content %}
-  <form method="post">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>Admin Login Page</p>
-        </div>
-
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
-
-              <div class="form-group">
-                {% render_field form.username class="form-control" placeholder="Username" %}
-              </div>
-
+<section>
+  <div class="flex flex-col justify-center items-center min-h-screen max-w-screen-sm mx-auto lg:py-0">
+    <div class="bg-white shadow-md rounded-lg w-full">
+      <div class="grid py-10 px-5 gap-4">
+        <h1 class="text-3xl font-bold flex justify-center">Login</h1>
+        <form method="post" class="grid gap-4">
+          {% csrf_token %}  
+          <div>
+              <label>Username</label>
+              
+              <p>{% render_field form.username class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Username"%}</p>
             </div>
-            <div class="col-md-6">
-
-              <div class="form-group">
-                {% render_field form.password class="form-control" placeholder="Password" %}
-              </div>
-
+            <div>
+              <label>Password</label>
+              <p>{% render_field form.password class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"  placeholder="Password" %}</p>
             </div>
+            <div>
+            <button type="submit" class="w-full py-2 mt-10 bg-blue-900  rounded-lg text-white">Login</button>
           </div>
-          <button type="submit" class="btnSubmit">Login</button>
-          <div class="text-center">Do not have account? <a href="adminsignup">Signup here</a></div>
-        </div>
+            <div class="flex justify-center">Do not have account? <a href="signup"> Signup here </a></div>
+        </form>
       </div>
     </div>
+  </div>
+</section>
 
-  </form>
 
 {% endblock content %}

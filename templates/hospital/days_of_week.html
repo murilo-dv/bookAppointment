@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Days of the Week</title>
+</head>
+<body>
+    <h1>Days of the Week</h1>
+    <table>
+        <thead>
+            {% for day in days_of_week %}
+            <th>
+                {{ day }}
+            </th>
+            {% endfor %}
+        </thead>
+    </table>
+    <ul>
+        {% for day in days_of_week %}
+            <li>{{ day }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

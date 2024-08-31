@@ -1,7 +1,7 @@
 {% load static %}
 <div class="bg-white rounded-lg border-gray-200 shadow-md h-96 mt-5">
-    <div class="h-12 py-4 px-9 text-lg"> Appointments Doctor/Admin</div>
-    
+    <div class="h-12 py-4 px-9 text-lg"> Appointments Patient</div>
+
     <table class="w-full">
         <thead>
             <tr class="bg-gray-200">
@@ -16,17 +16,17 @@
         <tbody>
             {% for appointment in appointments_doctor %}
             <tr class="border-b text-sm border-gray-200">
-                <td class="py-3 px-4 flex items-center">
+                <td  class="py-3 px-4 flex items-center">
                     <img src="{% static 'images/doctor.jpg' %}" class="rounded-full h-6 mr-3">
                     <span>{{appointment.patientId}}</span>
                 </td>
-                <td class="py-3 px-4">{{appointment.date}}</td>
-                <td class="py-3 px-4">{{appointment.time}}</td>
-                <td class="py-3 px-4">{{appointment.description}}</td>
-                <td class="py-3 px-4"><a href="">update</a></td>
-                <td class="py-3 px-4"><a href="">delete</a></td>
+                <td  class="py-3 px-4">{{appointment.date}}</td>
+                <td  class="py-3 px-4">{{appointment.time}}</td>
+                <td  class="py-3 px-4">{{appointment.description}}</td>
+                <td  class="py-3 px-4"><a href="" class="">update</a></td>
+                <td  class="py-3 px-4"><a href="">delete</a></td>
             </tr>
-            {% endfor%}
+                    {% endfor%}
         </tbody>
     
         

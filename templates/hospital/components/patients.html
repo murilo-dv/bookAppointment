@@ -1,34 +1,33 @@
 {% load static %}
-<div class="border-1 bg-white rounded-lg border-gray-200 shadow-md h-96 mb-4 mt-5">
-    <div class="h-12 py-4 px-9 text-lg"> Patients
-    </div>
+<div class=" bg-white rounded-lg border-gray-200 shadow-md h-96 mt-5">
+    <div class="h-12 py-4 px-9 text-lg font-semibold text-gray-700">Patients</div>
 
     <table class="w-full">
-        <tr class="bg-gray-200 py-1 px-5">
-        <th>Patient</th>
-        <th>E-mail</th>
-        <th>Phone</th>
-        <th>Date created</th>
-        <th>Last Visit</th>
-        <th>Update</th>
-        <th>Delete</th>
-        </tr>
-    
-        {% for patient in patients%}
-        <tr class="border-b-[2px] text-sm py-3 px-5 border-gray-200">
-            <th class="">
-                <img src="{% static 'images/doctor.png' %}" class="rounded-full h-6">
-                <span>{{patient}}</span>
-            </th>
-            <td>{{patient.email}}</td>
-            <td>{{patient.phone}}</td>
-            <td>Conditions</td>
-            <td>Last Visit</td>
-            <td>update</td>
-            <td>delete</td>
-        </tr>
-        {% endfor%}
-        
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="py-2 px-4 text-left">Patient</th>
+                <th class="py-2 px-4 text-left">Phone</th>
+                <th class="py-2 px-4 text-left">Conditions</th>
+                <th class="py-2 px-4 text-left">Last Visit</th>
+                <th class="py-2 px-4 text-left">Update</th>
+                <th class="py-2 px-4 text-left">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients%}
+            <tr class="border-b text-sm  border-gray-200">
+                <td class="py-3 px-4 flex items-center">
+                    <img src="{% static 'images/doctor.png' %}" class="rounded-full h-6 ">
+                    <span>{{patient}}</span>
+                </td>
+                <td class="py-3 px-4">{{patient.phone}}</td>
+                <td class="py-3 px-4">Conditions</td>
+                <td class="py-3 px-4">Last Visit</td>
+                <td class="py-3 px-4">update</td>
+                <td class="py-3 px-4">delete</td>
+            </tr>
+            {% endfor%}
+        </tbody>
 </table>
 
 </div>
