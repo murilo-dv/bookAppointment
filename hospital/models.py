@@ -22,14 +22,15 @@ class Doctor(models.Model):
     mobile = models.CharField(max_length=20,null=True)
     department= models.CharField(max_length=50,choices=departments,default='Cardiologist')
     status=models.BooleanField(default=False)
+    
     @property
     def get_name(self):
-        return self.user.first_name+" "+self.user.last_name
+        return f"{self.user.first_name} {self.user.last_name}"
     @property
     def get_id(self):
          return self.user.id
     def __str__(self):
-        return "{} {}".format(self.user.first_name, self.user.last_name)
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 
@@ -38,29 +39,22 @@ class Patient(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='profile_pic/PatientProfilePic/',null=True,blank=True)
     address = models.CharField(max_length=40)
-    mobile = models.CharField(max_length=20,null=False)
-    symptoms = models.CharField(max_length=100,null=False)
+    mobile = models.CharField(max_length=20)
+    symptoms = models.CharField(max_length=100)
     medicare = models.CharField(max_length=12, null=True)
-    #assignedDoctorId = models.PositiveIntegerField(null=True)
     admitDate=models.DateField(auto_now=True)
     status=models.BooleanField(default=False)
+    
     @property
     def get_name(self):
-        return self.user.first_name+" "+self.user.last_name
-    @property
-    def get_id(self):
-        return self.user.id
+        return f"{self.user.first_name} {self.user.last_name}"
+    
     def __str__(self):
-        return self.user.first_name+" "+ self.user.last_name
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 class Appointment(models.Model):
-    """Contains info about appointment"""
-
-    class Meta:
-        unique_together = ('date', 'timeslot')
-
-    TIMESLOT_LIST = (
+    TIMESLOT_LIST = [
         (0, '08:00 - 08:30'),
         (1, '08:30 - 09:00'),
         (2, '09:00 - 09:30'),
@@ -73,30 +67,52 @@ class Appointment(models.Model):
         (9, '16:00 - 16:30'),
         (10, '17:00 - 17:30'),
         (11, '17:00 - 18:00'),
-    )
+    ]
 
-    
-    date = models.DateField(help_text="YYYY-MM-DD", blank=True)
-    doctorId = models.ForeignKey('Doctor',on_delete = models.CASCADE, null=True, blank=True, default=None)
-    patientId = models.ForeignKey('Patient',on_delete = models.CASCADE, blank=True, default=None)
-    timeslot = models.IntegerField(choices=TIMESLOT_LIST, null=True)
+    doctor = models.ForeignKey(Doctor, on_delete = models.CASCADE)
+    patient = models.ForeignKey('Patient',on_delete = models.CASCADE, blank=True, null=True)
+    date = models.DateField(help_text="YYYY-MM-DD")
+    timeslot = models.IntegerField(choices=TIMESLOT_LIST)
     description=models.TextField(max_length=500)
     status=models.BooleanField(default=False)
-    
+
+    class Meta:
+        unique_together = ('date', 'timeslot', 'doctor')
+
     def __str__(self):
-          return '{}. Patient: {}'.format( self.time, self.patientId)
+        return f"Appointment with Dr. {self.doctor.get_name} on {self.date} at {self.get_timeslot_display}"
 
     @property
-    def time(self):
-        return self.TIMESLOT_LIST[self.timeslot][1]
+    def get_timeslot_display(self):
+                # Use the `choices` tuple directly
+        timeslot_dict = dict(Appointment.TIMESLOT_LIST)
+        return timeslot_dict.get(self.timeslot, "Unknown Time")
+    
+    def save(self, *args, **kwargs):
+        # Ensure that the appointment's date and time slot is available for the doctor
+        if not DoctorAvailability.objects.filter(
+            doctor=self.doctor, date=self.date, timeslot=self.timeslot
+        ).exists():
+            raise ValueError("This time slot is not available for the doctor.")
+        super().save(*args, **kwargs)
 
+class DoctorAvailability(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, default=1)
+    date = models.DateField()
+    timeslot = models.IntegerField(choices=Appointment.TIMESLOT_LIST)
 
-# class Appointment(models.Model):
-#     patientId=models.PositiveIntegerField(null=True)
-#     doctorId=models.PositiveIntegerField(null=True)
-#     patientName=models.CharField(max_length=40,null=True)
-#     doctorName=models.CharField(max_length=40,null=True)
-#     appointmentDate=models.DateField(auto_now=True)
-#     description=models.TextField(max_length=500)
-#     status=models.BooleanField(default=False)
+    class Meta:
+        unique_together = ('doctor', 'date', 'timeslot')
+
+    def __str__(self):
+        return f"Doctor: {self.doctor.get_name}, Date: {self.date}, Time: {self.get_timeslot_display}"
+    
+    @property
+    def get_timeslot_display(self):
+                # Use the `choices` tuple directly
+        timeslot_dict = dict(Appointment.TIMESLOT_LIST)
+        return timeslot_dict.get(self.timeslot, "Unknown Time")
+    
+    
+
 

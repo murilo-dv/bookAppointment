@@ -3,31 +3,42 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
 from . import models
 
+# Book Appointment
 class MyForm(forms.ModelForm):
   class Meta:
     model = models.Appointment
-    fields = [ "doctorId",  "patientId", "date","timeslot", "description"]
-    labels = { "doctorId": "doctor name", "patientId": "Patient name", "date": "Date", "timeslot":"Time", "description": "description"}
+    fields = [ "doctor",  "patient", "date","timeslot", "description"]
+    labels = { "doctor": "doctor name", "patient": "Patient name", "date": "Date", "timeslot":"Time", "description": "description"}
+    widgets = {
+        'date': forms.DateInput(attrs={
+                'class': 'datepicker',  # This class will be used for targeting with Flatpickr
+                'placeholder': 'Select Date',
+                'type': 'date'  # Ensures the input type is date)
+        })
+    }
 
 
-#for admin signup
-class AdminSigupForm(forms.ModelForm):
+#for signup
+class signup(forms.ModelForm):
     class Meta:
-        model=User
-        fields=['first_name','last_name','username','password']
+        model= User
+        fields = ['first_name', 'last_name', 'email', 'password']
         widgets = {
-        'password': forms.PasswordInput()
+            'password': forms.PasswordInput()
         }
 
 
-#for student related form
-class DoctorUserForm(forms.ModelForm):
-    class Meta:
-        model=User
-        fields=['first_name','last_name','username','password']
-        widgets = {
-        'password': forms.PasswordInput()
-        }
+
+
+
+
+
+
+
+
+
+
+
 class DoctorForm(forms.ModelForm):
     class Meta:
         model=models.Doctor
@@ -35,7 +46,7 @@ class DoctorForm(forms.ModelForm):
 
 
 
-#for teacher related form
+#for Patient related form
 class PatientUserForm(forms.ModelForm):
     class Meta:
         model=User
@@ -124,3 +135,27 @@ class PatientRegistrationForm(UserCreationForm):
         user.groups.add(patient_group)
 
         return user
+    
+
+##########################
+## VERIFY IF CAN DELETE ##
+##########################
+
+
+# #for admin signup
+# class AdminSigupForm(forms.ModelForm):
+#     class Meta:
+#         model=User
+#         fields=['first_name','last_name','username','password']
+#         widgets = {
+#         'password': forms.PasswordInput()
+#         }
+
+# #for Doctor related form
+# class DoctorUserForm(forms.ModelForm):
+#     class Meta:
+#         model=User
+#         fields=['first_name','last_name','username','password']
+#         widgets = {
+#         'password': forms.PasswordInput()
+#         }
